@@ -17,39 +17,42 @@ def models_itm(option_type, stock_price, strike_price):
     }
 
     def get_result():
+        if option_types[option_type] is None:
+            return f'{error_message} the option type needs to be either LC || LP || SC || SP.'
+
         if option_type == 'LC':  # Long Call
             if stock_price > strike_price:
                 return 'IN'
-            elif stock_price < strike_price:
+            if stock_price < strike_price:
                 return 'OUT'
-            elif stock_price == strike_price:
+            if stock_price == strike_price:
                 return 'AT'
 
-        elif option_type == 'LP':  # Long Put
+        if option_type == 'LP':  # Long Put
             if stock_price > strike_price:
                 return 'OUT'
-            elif stock_price < strike_price:
+            if stock_price < strike_price:
                 return 'IN'
-            elif stock_price == strike_price:
+            if stock_price == strike_price:
                 return 'AT'
 
-        elif option_type == 'SC':  # Short Call
+        if option_type == 'SC':  # Short Call
             if stock_price > strike_price:
                 return 'OUT'
-            elif stock_price < strike_price:
+            if stock_price < strike_price:
                 return 'IN'
-            elif stock_price == strike_price:
+            if stock_price == strike_price:
                 return 'AT'
 
-        elif option_type == 'SP':  # Short Put
+        if option_type == 'SP':  # Short Put
             if stock_price > strike_price:
                 return 'IN'
-            elif stock_price < strike_price:
+            if stock_price < strike_price:
                 return 'OUT'
-            elif stock_price == strike_price:
+            if stock_price == strike_price:
                 return 'AT'
 
-    prefix = f'The {option_types[option_type]} option is '
+    prefix = f'The {option_types[option_type]} option is'
     result = option_result[get_result()]
 
     return f'{prefix} {result}'
